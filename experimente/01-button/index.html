@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" async="false"></script>
+    <title>Mein Playground</title>
+</head>
+<body>
+    <h1>Playground</h1>
+    <p><em>Start: 14. Dez 2025</em></p>
+    
+    <section class="experiment" id="day-1">
+        <h2>Tag 1: Der Button</h2>
+        <button id="test-btn">Klick mich!</button>
+        <p id="output"></p>
+        <h3>Code:</h3>
+        <pre><code>
+            const options = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            fractionalSecondDigits: 3
+            };
+
+            document.getElementById('test-btn').addEventListener('click', function() {
+            document.getElementById('output').textContent = 
+                'Hallo, heute ist der ' + new Date().toLocaleString("de-DE", options);
+            });
+        </code></pre>
+    </section>
+
+</body>
+</html>
