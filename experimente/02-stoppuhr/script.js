@@ -7,6 +7,8 @@ let minutes;
 let seconds;
 let milliseconds;
 
+const container = document.querySelector('.stoppuhr-container');
+
 function updateDisplay() {
 	elapsedTime = new Date().getTime() - startTime;
 	hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
@@ -28,13 +30,15 @@ function updateDisplay() {
 
 document.getElementById('start-btn').addEventListener('click', function() {	
 	clearInterval(timerInterval);
+	container.classList.add('running');
 	startTime = new Date().getTime() - savedElapsedTime;
 	timerInterval = setInterval(updateDisplay, 10);
 });
 
 document.getElementById('stop-btn').addEventListener('click', function() {
     savedElapsedTime = elapsedTime;
-	clearInterval(timerInterval);        
+	clearInterval(timerInterval);  
+	container.classList.remove('running');      
 	document.getElementById('display').textContent = 
 		(hours > 0 ? hours.toString().padStart(2, '0') + ':' : '') +
 		(minutes > 0 ? minutes.toString().padStart(2, '0') + ':' : '') +
@@ -46,6 +50,7 @@ document.getElementById('reset-btn').addEventListener('click', function() {
 	savedElapsedTime = 0;
 	elapsedTime = 0;
 	clearInterval(timerInterval);
+	container.classList.remove('running');
 	document.getElementById('display').textContent = 
 		"00:00";
 });
