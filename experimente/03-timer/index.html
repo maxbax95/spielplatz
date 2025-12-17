@@ -8,6 +8,13 @@
 <body>
     <div class="timer-container">
         <h1>Timer</h1>
+        <div class="input-group">
+            <input type="number" id="hours" min="0" placeholder="HH" value="0">
+            <span>:</span>
+            <input type="number" id="minutes" min="0" max="59" placeholder="MM" value="5">
+            <span>:</span>
+            <input type="number" id="seconds" min="0" max="59" placeholder="SS" value="0">
+        </div>
         <div id="display"><p>00:00:00</p></div>
         <div class="buttons">
             <button id="start-btn">Start</button>
