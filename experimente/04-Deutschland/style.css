@@ -1,0 +1,35 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  #map-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  svg {
+    width: 100%;
+    height: auto;
+  }
+  
+  .bundesland {
+    fill: #e0e0e0;
+    stroke: #fff;
+    stroke-width: 1.5;
+    cursor: pointer;
+    transition: fill 0.3s;
+  }
+  
+  .bundesland:hover {
+    fill: #b0bec5;
+  }
+  
+  .correct {
+    fill: #4caf50 !important;
+  }
+  
+  .wrong {
+    fill: #f44336 !important;
+  }
