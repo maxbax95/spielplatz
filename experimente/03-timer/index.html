@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="timer-container">
         <h1>Timer</h1>
-        <div class="input-group">
-            <input type="number" id="hours" min="0" placeholder="HH" value="0">
-            <span>:</span>
-            <input type="number" id="minutes" min="0" max="59" placeholder="MM" value="5">
-            <span>:</span>
-            <input type="number" id="seconds" min="0" max="59" placeholder="SS" value="0">
-        </div>
-        <div id="display"><p>00:00:00</p></div>
+        <input
+            type="text"
+            id="time-input"
+            inputmode="numeric"
+            autocomplete="off"
+            spellcheck="false"
+            value="5:00"
+            aria-label="Timer-Dauer"
+        >
         <div class="buttons">
             <button id="start-btn">Start</button>
             <button id="stop-btn">Stop</button>
