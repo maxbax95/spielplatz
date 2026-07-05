@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do-Liste</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>📋 To-Do-Liste</h1>
+  <p class="subtitle">Hinzufügen · Erledigen · Löschen · Speichern</p>
+
+  <div id="app">
+    <!-- Eingabe -->
+    <form id="todo-form">
+      <input type="text" id="todo-input" placeholder="Neue Aufgabe eingeben ..." autofocus>
+      <button type="submit">➕ Hinzufügen</button>
+    </form>
+
+    <!-- Filter -->
+    <div id="filter">
+      <button class="filter-btn aktiv" data-filter="all">Alle</button>
+      <button class="filter-btn" data-filter="active">Offen</button>
+      <button class="filter-btn" data-filter="done">Erledigt</button>
+    </div>
+
+    <!-- Liste -->
+    <ul id="todo-list"></ul>
+
+    <!-- Footer -->
+    <div id="footer">
+      <span id="count">0 Aufgaben</span>
+      <button id="clear-done">Erledigte löschen</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
