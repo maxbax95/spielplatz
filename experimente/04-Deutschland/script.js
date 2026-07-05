@@ -44,6 +44,7 @@ function naechstesLand() {
 
   // Wenn alle bearbeitet -> Spielende
   if (verbleibendeIDs.length === 0) {
+    remainingSpan.textContent = 0;
     feedback.textContent = 'Alle Bundesländer bearbeitet!';
     guessInput.disabled = true;
     guessForm.querySelector('button').disabled = true;
