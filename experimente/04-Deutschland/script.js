@@ -27,6 +27,7 @@ const guessInput = document.getElementById('guess-input');
 const feedback = document.getElementById('feedback');
 const attemptsSpan = document.getElementById('attempts-left');
 const remainingSpan = document.getElementById('remaining');
+const resetBtn = document.getElementById('reset-btn');
 
 let aktuellesLandID = null;
 let versuche = 3;
@@ -43,6 +44,7 @@ function naechstesLand() {
     feedback.textContent = 'Alle Bundesländer bearbeitet!';
     guessInput.disabled = true;
     guessForm.querySelector('button').disabled = true;
+    resetBtn.style.display = 'inline-block';
     return;
   }
 
@@ -103,5 +105,25 @@ function pruefeEingabe(event) {
   }
 }
 
+function resetQuiz() {
+  verbleibendeIDs = [...alleIDs];
+  aktuellesLandID = null;
+
+  document.querySelectorAll('#map-container path').forEach(path => {
+    path.classList.remove('correct', 'wrong', 'active-land');
+  });
+
+  guessInput.disabled = false;
+  guessForm.querySelector('button').disabled = false;
+  guessInput.value = '';
+  feedback.textContent = '';
+  resetBtn.style.display = 'none';
+  remainingSpan.textContent = alleIDs.length;
+  attemptsSpan.textContent = 3;
+
+  naechstesLand();
+}
+
+resetBtn.addEventListener('click', resetQuiz);
 guessForm.addEventListener('submit', pruefeEingabe);
 naechstesLand();
