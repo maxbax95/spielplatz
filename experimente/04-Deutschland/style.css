@@ -23,7 +23,7 @@ body {
   }
   
   .bundesland:hover {
-    fill: #b0bec5;
+    fill: #69b2d6;
   }
   
   .correct {
@@ -33,3 +33,15 @@ body {
   .wrong {
     fill: #f44336 !important;
   }
+
+  .active-land {
+  fill: #e946ce !important;        
+  stroke: #000;
+  stroke-width: 3;
+  animation: pulse 1s infinite normal;
+}
+
+@keyframes pulse {
+  from { opacity: 0.7; }
+  to   { opacity: 1; }
+}
