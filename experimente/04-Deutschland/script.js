@@ -181,6 +181,7 @@ function setzeModus(modus) {
 document.querySelectorAll('#map-container path[id]').forEach(path => {
   if (bundeslandNamen[path.id]) {
     path.classList.add('bundesland');
+    path.style.fill = '';
     path.addEventListener('click', handleKlickAufLand);
   }
 });

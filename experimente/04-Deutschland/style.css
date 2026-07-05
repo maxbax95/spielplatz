@@ -23,7 +23,7 @@ body {
   }
   
   .bundesland:hover {
-    fill: #69b2d6;
+    fill: #69b2d6 !important;
   }
   
   .correct {
