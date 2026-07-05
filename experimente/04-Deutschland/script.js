@@ -28,6 +28,9 @@ const feedback = document.getElementById('feedback');
 const attemptsSpan = document.getElementById('attempts-left');
 const remainingSpan = document.getElementById('remaining');
 const resetBtn = document.getElementById('reset-btn');
+const statePrompt = document.getElementById('state-prompt');
+const modeRadios = document.querySelectorAll('input[name="mode"]');
+let spielModus = 'standard';
 
 let aktuellesLandID = null;
 let versuche = 3;
@@ -44,6 +47,7 @@ function naechstesLand() {
     feedback.textContent = 'Alle Bundesländer bearbeitet!';
     guessInput.disabled = true;
     guessForm.querySelector('button').disabled = true;
+    statePrompt.style.display = 'none';
     resetBtn.style.display = 'inline-block';
     return;
   }
@@ -52,16 +56,20 @@ function naechstesLand() {
   const zufallsIndex = Math.floor(Math.random() * verbleibendeIDs.length);
   aktuellesLandID = verbleibendeIDs[zufallsIndex];
 
-  // Hervorheben
-  const landElement = document.getElementById(aktuellesLandID);
-  landElement.classList.add('active-land');
+  if (spielModus === 'click') {
+    statePrompt.textContent = `Klicke: ${bundeslandNamen[aktuellesLandID]}`;
+    statePrompt.style.display = 'block';
+    feedback.textContent = '';
+  } else {
+    const landElement = document.getElementById(aktuellesLandID);
+    landElement.classList.add('active-land');
 
-  // Versuche zurücksetzen
-  versuche = 3;
-  attemptsSpan.textContent = versuche;
-  feedback.textContent = '';
-  guessInput.value = '';
-  guessInput.focus();
+    versuche = 3;
+    attemptsSpan.textContent = versuche;
+    feedback.textContent = '';
+    guessInput.value = '';
+    guessInput.focus();
+  }
 
   // Verbleibende Anzahl aktualisieren
   remainingSpan.textContent = verbleibendeIDs.length;
@@ -118,11 +126,70 @@ function resetQuiz() {
   guessInput.value = '';
   feedback.textContent = '';
   resetBtn.style.display = 'none';
+  statePrompt.style.display = 'none';
   remainingSpan.textContent = alleIDs.length;
   attemptsSpan.textContent = 3;
 
   naechstesLand();
 }
+
+function handleKlickAufLand(event) {
+  if (spielModus !== 'click' || !aktuellesLandID) return;
+
+  const landElement = event.currentTarget;
+  const landID = landElement.id;
+
+  if (!bundeslandNamen[landID]) return;
+
+  if (landID === aktuellesLandID) {
+    landElement.classList.add('correct');
+    feedback.textContent = `Richtig! Das war ${bundeslandNamen[landID]}.`;
+    verbleibendeIDs = verbleibendeIDs.filter(id => id !== landID);
+    setTimeout(naechstesLand, 100);
+  } else {
+    landElement.classList.add('wrong');
+    setTimeout(() => landElement.classList.remove('wrong'), 500);
+    feedback.textContent = `Falsch! Das ist nicht ${bundeslandNamen[aktuellesLandID]}.`;
+  }
+}
+
+function setzeModus(modus) {
+  spielModus = modus;
+
+  if (aktuellesLandID) {
+    document.getElementById(aktuellesLandID).classList.remove('active-land');
+  }
+
+  if (modus === 'click') {
+    guessForm.style.display = 'none';
+    document.getElementById('attempts-info').style.display = 'none';
+    statePrompt.style.display = 'block';
+  } else {
+    guessForm.style.display = '';
+    document.getElementById('attempts-info').style.display = '';
+    statePrompt.style.display = 'none';
+    guessInput.focus();
+  }
+
+  aktuellesLandID = null;
+  versuche = 3;
+  attemptsSpan.textContent = 3;
+  feedback.textContent = '';
+  naechstesLand();
+}
+
+document.querySelectorAll('#map-container path[id]').forEach(path => {
+  if (bundeslandNamen[path.id]) {
+    path.classList.add('bundesland');
+    path.addEventListener('click', handleKlickAufLand);
+  }
+});
+
+modeRadios.forEach(radio => {
+  radio.addEventListener('change', () => {
+    if (radio.checked) setzeModus(radio.value);
+  });
+});
 
 resetBtn.addEventListener('click', resetQuiz);
 guessForm.addEventListener('submit', pruefeEingabe);

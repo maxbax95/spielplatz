@@ -61,3 +61,28 @@ body {
 #reset-btn:hover {
   background: #1976d2;
 }
+
+#mode-selector {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+#mode-selector label {
+  cursor: pointer;
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+#mode-selector label:hover {
+  background: #eee;
+}
+
+#state-prompt {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #e946ce;
+  margin: 0.5em 0;
+}

@@ -108,13 +108,18 @@
     </svg>
   </div>
   <div id="game-area">
+    <div id="mode-selector">
+      <label><input type="radio" name="mode" value="standard" checked> Standard (Eingabe)</label>
+      <label><input type="radio" name="mode" value="click"> Klick das Bundesland</label>
+    </div>
     <p id="info">Noch <span id="remaining">16</span> Länder übrig.</p>
+    <p id="state-prompt" style="display:none"></p>
     <form id="guess-form">
       <input type="text" id="guess-input" placeholder="Bundesland eingeben..." autofocus />
       <button type="submit">OK</button>
     </form>
     <p id="feedback"></p>
-    <p>Versuche übrig: <span id="attempts-left">3</span></p>
+    <p id="attempts-info">Versuche übrig: <span id="attempts-left">3</span></p>
     <button id="reset-btn" style="display:none">Neustart</button>
   </div>
   <div id="message"></div>
