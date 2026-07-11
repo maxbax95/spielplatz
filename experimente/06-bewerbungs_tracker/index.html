@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bewerbungstracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Bewerbungstracker</p>
+          <h1>Behalte deine Bewerbungen ruhig und klar im Blick.</h1>
+          <p class="hero-text">
+            Sammle Unternehmen, Jobrollen, Quellen, Links und Status an einem Ort.
+            Deine Einträge bleiben lokal im Browser gespeichert.
+          </p>
+        </div>
+        <div class="hero-card" aria-label="Bewerbungsuebersicht">
+          <span class="hero-number" id="totalApplications">0</span>
+          <span>gespeicherte Bewerbungen</span>
+        </div>
+      </section>
+
+      <section class="panel form-panel" aria-labelledby="formTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Neuer Eintrag</p>
+            <h2 id="formTitle">Bewerbung erfassen</h2>
+          </div>
+          <button class="ghost-button hidden" id="cancelEditButton" type="button">
+            Bearbeiten abbrechen
+          </button>
+        </div>
+
+        <form id="applicationForm" class="application-form">
+          <input type="hidden" id="applicationId" />
+
+          <label>
+            Jobbezeichnung
+            <select id="jobTitle" required>
+              <option value="">Bitte auswählen</option>
+              <option value="Technical Account Manager">Technical Account Manager</option>
+              <option value="Customer Success">Customer Success</option>
+              <option value="Entwickler">Entwickler</option>
+              <option value="Customer Support">Customer Support</option>
+            </select>
+          </label>
+
+          <label>
+            Unternehmen
+            <input id="company" type="text" placeholder="z. B. Sonnen GmbH" required />
+          </label>
+
+          <label>
+            Bewerbungsseite
+            <input id="source" type="text" placeholder="z. B. LinkedIn, StepStone, Firmenwebsite" required />
+          </label>
+
+          <label>
+            Link zur Stellenanzeige
+            <input id="jobLink" type="url" placeholder="https://..." required />
+          </label>
+
+          <label>
+            Status
+            <select id="status" required>
+              <option value="Beworben">Beworben</option>
+              <option value="Keine Rückmeldung">Keine Rückmeldung</option>
+              <option value="Abgelehnt">Abgelehnt</option>
+              <option value="Einladung Vorstellungsgespräch">Einladung Vorstellungsgespräch</option>
+              <option value="1. Runde">1. Runde</option>
+              <option value="2. Runde">2. Runde</option>
+              <option value="Zugesagt">Zugesagt</option>
+            </select>
+          </label>
+
+          <label class="full-width">
+            Notiz optional
+            <textarea id="notes" rows="3" placeholder="Kontaktperson, nächster Schritt oder Erinnerung"></textarea>
+          </label>
+
+          <button class="primary-button" type="submit" id="submitButton">
+            Bewerbung speichern
+          </button>
+        </form>
+      </section>
+
+      <section class="stats-grid" aria-label="Statistiken">
+        <article class="stat-card">
+          <span id="activeCount">0</span>
+          <p>aktive Prozesse</p>
+        </article>
+        <article class="stat-card">
+          <span id="interviewCount">0</span>
+          <p>Gespräche / Runden</p>
+        </article>
+        <article class="stat-card">
+          <span id="offerCount">0</span>
+          <p>Zusagen</p>
+        </article>
+      </section>
+
+      <section class="panel list-panel" aria-labelledby="listTitle">
+        <div class="section-heading list-heading">
+          <div>
+            <p class="eyebrow">Übersicht</p>
+            <h2 id="listTitle">Deine Bewerbungen</h2>
+          </div>
+          <div class="toolbar">
+            <input id="searchInput" type="search" placeholder="Suchen..." aria-label="Bewerbungen suchen" />
+            <select id="statusFilter" aria-label="Nach Status filtern">
+              <option value="Alle">Alle Status</option>
+              <option value="Beworben">Beworben</option>
+              <option value="Keine Rückmeldung">Keine Rückmeldung</option>
+              <option value="Abgelehnt">Abgelehnt</option>
+              <option value="Einladung Vorstellungsgespräch">Einladung Vorstellungsgespräch</option>
+              <option value="1. Runde">1. Runde</option>
+              <option value="2. Runde">2. Runde</option>
+              <option value="Zugesagt">Zugesagt</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <h3>Noch keine Bewerbung gespeichert.</h3>
+          <p>Lege deinen ersten Eintrag an und baue dir Schritt für Schritt deine Übersicht auf.</p>
+        </div>
+
+        <div id="applicationsList" class="applications-list"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
