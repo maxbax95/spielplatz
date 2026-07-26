@@ -1,0 +1,12 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    min-height: 100vh;
+    background-color:cadetblue;
+}
+
+button {
+    padding: 10px 15px;
+}
