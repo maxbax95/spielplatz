@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baummeister - Karteikarten Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Experiment 09</p>
+          <h1 id="page-title">Baummeister</h1>
+          <p class="hero-text">
+            Lerne die wichtigsten in Deutschland vorkommenden Baumarten wie mit Anki:
+            ansehen, umdrehen, bewerten, wiederholen.
+          </p>
+        </div>
+        <div class="hero-card" aria-label="Lernfortschritt">
+          <span class="hero-number" id="known-count">0</span>
+          <span>stabile Karten</span>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Lernsteuerung">
+        <div class="mode-switch" role="tablist" aria-label="Modus waehlen">
+          <button class="mode-button active" data-mode="cards" type="button">Karteikarten</button>
+          <button class="mode-button" data-mode="quiz" type="button">Quiz</button>
+          <button class="mode-button" data-mode="atlas" type="button">Baum-Atlas</button>
+        </div>
+        <label class="select-label">
+          Gruppe
+          <select id="tree-filter">
+            <option value="all">Alle Arten</option>
+            <option value="laubbaum">Laubbaeume</option>
+            <option value="nadelbaum">Nadelbaeume</option>
+            <option value="fruchtbaum">Wildobst & Beeren</option>
+          </select>
+        </label>
+        <button class="ghost-button" id="reset-progress" type="button">Fortschritt zuruecksetzen</button>
+      </section>
+
+      <section class="stats-grid" aria-label="Statistik">
+        <article>
+          <strong id="due-count">0</strong>
+          <span>heute faellig</span>
+        </article>
+        <article>
+          <strong id="studied-count">0</strong>
+          <span>gelernt</span>
+        </article>
+        <article>
+          <strong id="streak-count">0</strong>
+          <span>richtige Quizantworten</span>
+        </article>
+      </section>
+
+      <section class="panel active" id="cards-panel">
+        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Karte umdrehen">
+          <div class="flashcard-inner">
+            <article class="card-face card-front">
+              <div class="tree-art" id="card-art"></div>
+              <p class="tag" id="card-type">Laubbaum</p>
+              <h2>Welcher Baum ist das?</h2>
+              <ul class="clue-list" id="front-clues"></ul>
+              <p class="hint">Klicken oder Leertaste: Karte umdrehen</p>
+            </article>
+            <article class="card-face card-back">
+              <p class="tag" id="back-type">Artprofil</p>
+              <h2 id="tree-name"></h2>
+              <p class="latin" id="latin-name"></p>
+              <div class="info-grid" id="tree-info"></div>
+              <p class="memory" id="memory-hook"></p>
+            </article>
+          </div>
+        </div>
+
+        <div class="rating-row" aria-label="Antwort bewerten">
+          <button class="rating again" data-rating="again" type="button">Nochmal</button>
+          <button class="rating hard" data-rating="hard" type="button">Schwer</button>
+          <button class="rating good" data-rating="good" type="button">Gut</button>
+          <button class="rating easy" data-rating="easy" type="button">Leicht</button>
+        </div>
+      </section>
+
+      <section class="panel" id="quiz-panel">
+        <article class="quiz-card">
+          <div class="tree-art compact" id="quiz-art"></div>
+          <p class="tag" id="quiz-type">Quiz</p>
+          <h2 id="quiz-question">Welcher Baum passt zu diesen Merkmalen?</h2>
+          <ul class="clue-list" id="quiz-clues"></ul>
+          <div class="answer-grid" id="answer-grid"></div>
+          <p class="quiz-feedback" id="quiz-feedback" aria-live="polite"></p>
+        </article>
+      </section>
+
+      <section class="panel" id="atlas-panel">
+        <div class="atlas-head">
+          <div>
+            <p class="eyebrow">Nachschlagen</p>
+            <h2>Baum-Atlas</h2>
+          </div>
+          <input id="atlas-search" type="search" placeholder="Art, Merkmal oder Frucht suchen" />
+        </div>
+        <div class="atlas-grid" id="atlas-grid"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
